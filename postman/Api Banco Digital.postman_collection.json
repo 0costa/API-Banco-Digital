@@ -1,0 +1,89 @@
+{
+  "info": {
+    "_postman_id": "7703fc6e-21a6-457f-a93b-529d8509d4b7",
+    "name": "API Banco Digital",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id":"32393331"
+  },
+  "item": [
+    {
+      "name": "Contas",
+      "item": [
+        {
+          "name": "Listar contas",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8080/api/v1/contas",
+              "protocol":"http",
+              "port":"8080",
+              "host": ["localhost"],
+              "path": ["api", "v1", "contas"]
+            }
+          }
+        },
+        {
+          "name": "Buscar conta por ID",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8080/api/v1/contas/1",
+              "protocol":"http",
+              "port":"8080",
+              "host": ["localhost"],
+              "path": ["api", "v1", "contas", "1"]
+            }
+          }
+        },
+        {
+          "name": "Histórico da conta",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8080/api/v1/contas/1/historico",
+              "protocol":"http",
+              "port":"8080",
+              "host": ["localhost"],
+              "path": ["api", "v1", "contas", "1", "historico"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Transferências",
+      "item": [
+        {
+          "name": "Transferir dinheiro",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "X-Idempotency-Key",
+                "value": "{{$guid}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"contaOrigemId\": 1,\n  \"contaDestinoId\": 2,\n  \"valor\": 10.00\n}"
+            },
+            "url": {
+              "raw": "http://localhost:8080/api/v1/contas/transferencia",
+              "protocol":"http",
+              "port":"8080",
+              "host": ["localhost"],
+              "path": ["api", "v1", "contas", "transferencia"]
+            }
+          }
+        }
+      ]
+    }
+  ]
+}

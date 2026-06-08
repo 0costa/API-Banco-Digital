@@ -1,0 +1,32 @@
+services:
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: api-banco-digital
+    ports:
+      - "8080:8080"
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://database:5432/api_banco_digital
+      SPRING_DATASOURCE_USERNAME: javaTeste
+      SPRING_DATASOURCE_PASSWORD: javaTeste
+    depends_on:
+      database:
+        condition: service_healthy
+    restart: unless-stopped
+
+  database:
+    image: postgres:16
+    container_name: api-database
+    environment:
+      POSTGRES_DB: api_banco_digital
+      POSTGRES_USER: javaTeste
+      POSTGRES_PASSWORD: javaTeste
+    ports:
+      - "5432:5432"
+    restart: unless-stopped
+    healthcheck:
+      test: [ "CMD-SHELL", "pg_isready -U javaTeste -d api_banco_digital" ]
+      interval: 5s
+      timeout: 5s
+      retries: 10
