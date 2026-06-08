@@ -63,8 +63,7 @@ Também é possível testar a API utilizando o Postman.
 - Clique em Import
 - Selecione o arquivo:
 > /postman/api-banco-digital.postman_collection.json
-- Importe também o environment
-> /postman/environment-local.json
+
 ---
 ##  Funcionalidades
 
